@@ -9,21 +9,35 @@
 /* Begin PBXBuildFile section */
 		8B3097D326FDDF7200E6D8B8 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097D226FDDF7200E6D8B8 /* AppDelegate.swift */; };
 		8B3097D526FDDF7200E6D8B8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097D426FDDF7200E6D8B8 /* SceneDelegate.swift */; };
-		8B3097D726FDDF7200E6D8B8 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097D626FDDF7200E6D8B8 /* ViewController.swift */; };
 		8B3097DA26FDDF7200E6D8B8 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3097D826FDDF7200E6D8B8 /* Main.storyboard */; };
 		8B3097DC26FDDF7D00E6D8B8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8B3097DB26FDDF7D00E6D8B8 /* Assets.xcassets */; };
 		8B3097DF26FDDF7D00E6D8B8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8B3097DD26FDDF7D00E6D8B8 /* LaunchScreen.storyboard */; };
+		8B3097EF26FF258800E6D8B8 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097EE26FF258800E6D8B8 /* MainView.swift */; };
+		8B3097F226FF259F00E6D8B8 /* MainViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097F126FF259F00E6D8B8 /* MainViewExtension.swift */; };
+		8B3097FE2700D38000E6D8B8 /* AddView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3097FD2700D38000E6D8B8 /* AddView.swift */; };
+		8B30980227020F8C00E6D8B8 /* AddViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30980127020F8B00E6D8B8 /* AddViewExtension.swift */; };
+		8B30980A2703667100E6D8B8 /* WeatherTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3098082703667100E6D8B8 /* WeatherTVCell.swift */; };
+		8B30980B2703667100E6D8B8 /* WeatherTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B3098092703667100E6D8B8 /* WeatherTVCell.xib */; };
+		8B309814270366A700E6D8B8 /* HourTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B309812270366A700E6D8B8 /* HourTVCell.swift */; };
+		8B309815270366A700E6D8B8 /* HourTVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8B309813270366A700E6D8B8 /* HourTVCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		8B3097CF26FDDF7200E6D8B8 /* WeatherApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WeatherApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8B3097D226FDDF7200E6D8B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8B3097D426FDDF7200E6D8B8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		8B3097D626FDDF7200E6D8B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		8B3097D926FDDF7200E6D8B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8B3097DB26FDDF7D00E6D8B8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8B3097DE26FDDF7D00E6D8B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8B3097E026FDDF7D00E6D8B8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8B3097EE26FF258800E6D8B8 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		8B3097F126FF259F00E6D8B8 /* MainViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewExtension.swift; sourceTree = "<group>"; };
+		8B3097FD2700D38000E6D8B8 /* AddView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddView.swift; sourceTree = "<group>"; };
+		8B30980127020F8B00E6D8B8 /* AddViewExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewExtension.swift; sourceTree = "<group>"; };
+		8B3098082703667100E6D8B8 /* WeatherTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherTVCell.swift; sourceTree = "<group>"; };
+		8B3098092703667100E6D8B8 /* WeatherTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WeatherTVCell.xib; sourceTree = "<group>"; };
+		8B309812270366A700E6D8B8 /* HourTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HourTVCell.swift; sourceTree = "<group>"; };
+		8B309813270366A700E6D8B8 /* HourTVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HourTVCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,8 +72,9 @@
 			children = (
 				8B3097E826FDE24000E6D8B8 /* Models */,
 				8B3097E926FDE24A00E6D8B8 /* View Controllers */,
-				8B3097EA26FDE25500E6D8B8 /* Supproting Files */,
+				8B3098052703662500E6D8B8 /* Cells */,
 				8B3097EB26FDE26700E6D8B8 /* Extensions */,
+				8B3097EA26FDE25500E6D8B8 /* Supproting Files */,
 				8B3097D826FDDF7200E6D8B8 /* Main.storyboard */,
 				8B3097DD26FDDF7D00E6D8B8 /* LaunchScreen.storyboard */,
 				8B3097E026FDDF7D00E6D8B8 /* Info.plist */,
@@ -77,7 +92,8 @@
 		8B3097E926FDE24A00E6D8B8 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8B3097D626FDDF7200E6D8B8 /* ViewController.swift */,
+				8B3097EE26FF258800E6D8B8 /* MainView.swift */,
+				8B3097FD2700D38000E6D8B8 /* AddView.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -95,8 +111,37 @@
 		8B3097EB26FDE26700E6D8B8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				8B3097F126FF259F00E6D8B8 /* MainViewExtension.swift */,
+				8B30980127020F8B00E6D8B8 /* AddViewExtension.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		8B3098052703662500E6D8B8 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				8B3098072703663900E6D8B8 /* HourCollectionCell */,
+				8B3098062703663100E6D8B8 /* WeatherCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		8B3098062703663100E6D8B8 /* WeatherCell */ = {
+			isa = PBXGroup;
+			children = (
+				8B3098082703667100E6D8B8 /* WeatherTVCell.swift */,
+				8B3098092703667100E6D8B8 /* WeatherTVCell.xib */,
+			);
+			path = WeatherCell;
+			sourceTree = "<group>";
+		};
+		8B3098072703663900E6D8B8 /* HourCollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				8B309812270366A700E6D8B8 /* HourTVCell.swift */,
+				8B309813270366A700E6D8B8 /* HourTVCell.xib */,
+			);
+			path = HourCollectionCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -156,9 +201,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8B30980B2703667100E6D8B8 /* WeatherTVCell.xib in Resources */,
 				8B3097DF26FDDF7D00E6D8B8 /* LaunchScreen.storyboard in Resources */,
 				8B3097DC26FDDF7D00E6D8B8 /* Assets.xcassets in Resources */,
 				8B3097DA26FDDF7200E6D8B8 /* Main.storyboard in Resources */,
+				8B309815270366A700E6D8B8 /* HourTVCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,9 +216,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B3097D726FDDF7200E6D8B8 /* ViewController.swift in Sources */,
 				8B3097D326FDDF7200E6D8B8 /* AppDelegate.swift in Sources */,
+				8B3097EF26FF258800E6D8B8 /* MainView.swift in Sources */,
+				8B30980227020F8C00E6D8B8 /* AddViewExtension.swift in Sources */,
+				8B309814270366A700E6D8B8 /* HourTVCell.swift in Sources */,
+				8B3097FE2700D38000E6D8B8 /* AddView.swift in Sources */,
 				8B3097D526FDDF7200E6D8B8 /* SceneDelegate.swift in Sources */,
+				8B30980A2703667100E6D8B8 /* WeatherTVCell.swift in Sources */,
+				8B3097F226FF259F00E6D8B8 /* MainViewExtension.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
