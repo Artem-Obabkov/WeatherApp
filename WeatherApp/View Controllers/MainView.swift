@@ -20,13 +20,10 @@ class MainView: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
-    // Table View
-    @IBOutlet weak var tableView: UITableView!
     
-    // Location
+    // Manager
     
-    var weatherModels = [Weather]()
-    
+    let networkManager = NetworkManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +31,8 @@ class MainView: UIViewController {
         // Design
         setUpDesign()
         
-        // Cells
+        //networkManager.fetchCurrentWeather(for: "Moscow")
         
-        tableView.register(HourTVCell.nib(), forCellReuseIdentifier: HourTVCell.identifier)
-        tableView.register(WeatherTVCell.nib(), forCellReuseIdentifier: WeatherTVCell.identifier)
-
     }
     
     // Button Actions
@@ -55,32 +49,29 @@ class MainView: UIViewController {
         
         let addVC = segue.source as! AddView
         
-        let city = addVC.cityName
-        self.locationLabel.text = city
+        
+        // Если название города состоит из 2 и более слов, то мы соединяем их.
+        let cityName = addVC.cityName
+        let cityInfo = cityName.split(separator: " ").joined(separator: "%20")
+        
+        
+        // Получаем данные для определенного города
+        let userInitiatedQueue = DispatchQueue.global(qos: .userInitiated)
+        userInitiatedQueue.async {
+            self.networkManager.fetchCurrentWeather(for: cityInfo)
+        }
+        // Проверяем есть ли в базе данных такой город и если нет устанавливаем значение по умолчанию
+        NetworkManager.errorGroup.notify(queue: .main) { [unowned self] in
+            self.createAlert(with: "Whoops...", message: "There is no such city", style: .alert)
+            self.locationLabel.text = "City"
+        }
+        
+        
+        // Присвоить locationLabel значение JSON name 
+        self.locationLabel.text = cityName
+        
     }
     
 }
 
-// TableView
-
-extension MainView: UITableViewDelegate, UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return weatherModels.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell()
-    }
-    
-    
-}
-
-// Location Manager
-
-
-
-struct Weather {
-    
-}
 

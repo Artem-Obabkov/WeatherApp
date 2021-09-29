@@ -38,13 +38,13 @@ class AddView: UIViewController {
         
         if let tfText  = textField.text, tfText != "" {
             
-            let finalText = tfText.trimmingCharacters(in: .whitespaces)
+            let finalText = tfText.trimmingCharacters(in: .whitespaces).lowercased().capitalizeFirstLetter()
             self.cityName = finalText
             
             performSegue(withIdentifier: "findCity", sender: self)
         } else {
             
-            createAlert(with: "Whops...", message: "Seems like you don't type anything", style: .alert)
+            createAlert(with: "Whopops...", message: "Seems like you don't type anything", style: .alert)
         }
         
         

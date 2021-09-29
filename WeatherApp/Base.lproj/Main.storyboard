@@ -6,7 +6,6 @@
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -22,14 +21,6 @@
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <preferredSymbolConfiguration key="preferredSymbolConfiguration" scale="default"/>
                             </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="JYH-oj-AuU">
-                                <rect key="frame" x="0.0" y="399" width="414" height="497"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="5qU-Ip-Sbt"/>
-                                    <outlet property="delegate" destination="BYZ-38-t0r" id="ElS-PF-sJo"/>
-                                </connections>
-                            </tableView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="8sG-kc-5xw">
                                 <rect key="frame" x="122" y="106.5" width="170" height="272"/>
                                 <subviews>
@@ -139,19 +130,15 @@
                             <constraint firstItem="8sG-kc-5xw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="KdT-9d-wSm"/>
                             <constraint firstItem="aAI-aS-bkN" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="32" id="LFM-Nr-6Yf"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="8sG-kc-5xw" secondAttribute="trailing" constant="32" id="MGd-d9-RV8"/>
-                            <constraint firstItem="JYH-oj-AuU" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="PP8-WJ-ri8"/>
                             <constraint firstItem="aAI-aS-bkN" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="20" id="REC-M9-9E8"/>
                             <constraint firstItem="8sG-kc-5xw" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.410628" id="W2D-qv-4vt"/>
-                            <constraint firstAttribute="bottom" secondItem="JYH-oj-AuU" secondAttribute="bottom" id="Y2U-Lm-HmH"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="odi-Xx-nIw" secondAttribute="bottom" constant="32" id="YLP-5t-GXA"/>
                             <constraint firstItem="QEG-CS-1QB" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="g4i-Ks-5xJ"/>
                             <constraint firstItem="QEG-CS-1QB" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="gKs-N3-d7R"/>
                             <constraint firstItem="u6O-c1-Y59" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="mHx-fX-dyP"/>
-                            <constraint firstItem="JYH-oj-AuU" firstAttribute="top" secondItem="8sG-kc-5xw" secondAttribute="bottom" constant="20.5" id="mJa-SJ-EED"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="u6O-c1-Y59" secondAttribute="bottom" constant="32" id="ozL-c4-MqS"/>
                             <constraint firstItem="8sG-kc-5xw" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="puW-Ex-Btz"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="aAI-aS-bkN" secondAttribute="trailing" constant="32" id="suY-Xq-SWg"/>
-                            <constraint firstItem="JYH-oj-AuU" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="ysi-Rf-tjp"/>
                         </constraints>
                     </view>
                     <connections>
@@ -160,7 +147,6 @@
                         <outlet property="locationButton" destination="u6O-c1-Y59" id="npX-3Q-TQZ"/>
                         <outlet property="locationLabel" destination="aAI-aS-bkN" id="fgp-7s-NZp"/>
                         <outlet property="searchButton" destination="odi-Xx-nIw" id="iNz-Tk-Arx"/>
-                        <outlet property="tableView" destination="JYH-oj-AuU" id="WgI-68-omw"/>
                         <outlet property="temp" destination="54F-K0-A8l" id="EuC-BU-vSW"/>
                         <outlet property="weatherImage" destination="JzN-Gk-F8A" id="k6o-Zw-o6f"/>
                     </connections>
@@ -288,8 +274,5 @@
         <namedColor name="AddScreenBG">
             <color red="0.29399999976158142" green="0.25499999523162842" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
     </resources>
 </document>
