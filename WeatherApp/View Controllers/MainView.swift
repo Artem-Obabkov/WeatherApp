@@ -31,8 +31,7 @@ class MainView: UIViewController {
         // Design
         setUpDesign()
         
-        //networkManager.fetchCurrentWeather(for: "Moscow")
-        
+        networkManager.delegate = self
     }
     
     // Button Actions
@@ -58,20 +57,19 @@ class MainView: UIViewController {
         // Получаем данные для определенного города
         let userInitiatedQueue = DispatchQueue.global(qos: .userInitiated)
         userInitiatedQueue.async {
+            
+            // Получаем данные о погоде в выбранном городе
             self.networkManager.fetchCurrentWeather(for: cityInfo)
         }
-        // Проверяем есть ли в базе данных такой город и если нет устанавливаем значение по умолчанию
-        NetworkManager.errorGroup.notify(queue: .main) { [unowned self] in
-            self.createAlert(with: "Whoops...", message: "There is no such city", style: .alert)
-            self.locationLabel.text = "City"
-        }
-        
-        
-        // Присвоить locationLabel значение JSON name 
-        self.locationLabel.text = cityName
-        
     }
-    
 }
 
-
+extension MainView: NetworkManagerDelegate {
+    
+    func updatingInterface(_: NetworkManager, with currentWeather: CurrentWeather) {
+        
+        DispatchQueue.main.sync {
+            self.locationLabel.text = currentWeather.cityName
+        }
+    }
+}

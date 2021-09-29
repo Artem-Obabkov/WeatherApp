@@ -20,6 +20,7 @@
 		8B30981E2703850F00E6D8B8 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30981D2703850F00E6D8B8 /* NetworkManager.swift */; };
 		8B309823270462BA00E6D8B8 /* OtherExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B309822270462BA00E6D8B8 /* OtherExtensions.swift */; };
 		8B3098262704725000E6D8B8 /* CurrentWeatherData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B3098252704725000E6D8B8 /* CurrentWeatherData.swift */; };
+		8B30982A27047CA200E6D8B8 /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B30982927047CA200E6D8B8 /* CurrentWeather.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		8B30981D2703850F00E6D8B8 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		8B309822270462BA00E6D8B8 /* OtherExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherExtensions.swift; sourceTree = "<group>"; };
 		8B3098252704725000E6D8B8 /* CurrentWeatherData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeatherData.swift; sourceTree = "<group>"; };
+		8B30982927047CA200E6D8B8 /* CurrentWeather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXGroup;
 			children = (
 				8B3098252704725000E6D8B8 /* CurrentWeatherData.swift */,
+				8B30982927047CA200E6D8B8 /* CurrentWeather.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -199,6 +202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8B3097D326FDDF7200E6D8B8 /* AppDelegate.swift in Sources */,
+				8B30982A27047CA200E6D8B8 /* CurrentWeather.swift in Sources */,
 				8B3098262704725000E6D8B8 /* CurrentWeatherData.swift in Sources */,
 				8B3097EF26FF258800E6D8B8 /* MainView.swift in Sources */,
 				8B30980227020F8C00E6D8B8 /* AddViewExtension.swift in Sources */,
