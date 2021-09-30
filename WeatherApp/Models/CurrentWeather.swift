@@ -13,18 +13,33 @@ struct CurrentWeather {
     
     let temperature: Double
     var temperatureString: String {
-        return "\(temperature.rounded())"
+        if temperature > 9.9 || temperature < -9.9 {
+            return String(format: "%.0f", temperature.rounded())
+        }
+        return String(format: "%.1f", temperature)
     }
     
     let feelsLikeTemp: Double
     var feelsLikeTempString: String {
-        return "\(feelsLikeTemp.rounded())"
+        return String(format: "%.1f", feelsLikeTemp)
     }
     
+    // В зависимотси от id будет присвоена определенная иконка.
     let conditionCode: Int
-    
-    // Должен быть True
-    //let isCityAvailable: Bool
+    var weatherIconString: String {
+        switch conditionCode {
+        case 200...232: return "cloud.bolt.rain"
+        case 300...321: return "cloud.drizzle"
+        case 500...531: return "cloud.rain"
+        case 600...622: return "snow"
+        case 701...781: return "cloud.fog"
+        case 800: return "sun.max"
+        case 801: return "cloud.sun"
+        case 802: return "cloud"
+        case 803...804: return "smoke"
+        default: return "nosign"
+        }
+    }
     
     // Создаем инициализатор, который если что-то пойдет не так возвращает nil
     init?(currentWeatherData: CurrentWeatherData) {

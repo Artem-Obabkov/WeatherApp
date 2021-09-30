@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 protocol NetworkManagerDelegate: class {
     func updatingInterface(_: NetworkManager, with currentWeather: CurrentWeather)
@@ -16,17 +17,33 @@ class NetworkManager {
 
     weak var delegate: NetworkManagerDelegate?
     
-    func fetchCurrentWeather(for city: String)  {
+    enum RequestType {
+        case cityName(city: String)
+        case coordinates(latitude: CLLocationDegrees, longitude: CLLocationDegrees)
+    }
+    // TODO: - Create one method from these two
+    
+    func fetchCurrentWeather(forRequestType requestType: RequestType) {
+        var urlString = ""
         
-        // Recieve data
-        let urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)"
+        switch requestType {
+        case .cityName(let city):
+            urlString = "https://api.openweathermap.org/data/2.5/weather?q=\(city)&appid=\(apiKey)&units=metric"
+        case .coordinates(let latitude, let longitude):
+            urlString = "https://api.openweathermap.org/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&appid=\(apiKey)&units=metric"
+        }
         
+        performTask(with: urlString)
+    }
+    
+    
+    fileprivate func performTask(with urlString: String) {
         guard let url = URL(string: urlString) else { return }
         
         // Все дальнейшее взаимодействее с API будет происходить через сессию
         let session = URLSession(configuration: .default)
         
-        // Создаем запрос данных 
+        // Создаем запрос данных
         let task = session.dataTask(with: url) { (data, response, error) in
             
             if let data = data {
@@ -44,7 +61,7 @@ class NetworkManager {
     }
     
     // Раскладываем полученные JSON данные по модели которую мы создали CurrentWeatherData
-    func parseJSON(withData data: Data) -> CurrentWeather? {
+    fileprivate func parseJSON(withData data: Data) -> CurrentWeather? {
         
         // Что бы перевести данные из JSONData в нашу можель мы должны создать JSONDecoder
         let decoder = JSONDecoder()

@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class MainView: UIViewController {
     
@@ -20,25 +21,51 @@ class MainView: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
     @IBOutlet weak var locationButton: UIButton!
     
-    
-    // Manager
-    
+    // Managers
     let networkManager = NetworkManager()
+    lazy var locationManager: CLLocationManager =  {
+        let  lm = CLLocationManager()
+        lm.delegate = self
+        lm.desiredAccuracy = kCLLocationAccuracyKilometer
+        lm.requestWhenInUseAuthorization()
+        return lm
+    }()
+    
+    // Queues
+    let userInitiatedQueue = DispatchQueue.global(qos: .userInteractive)
+    
+//    override func viewWillAppear(_ animated: Bool) {
+//        super.viewWillAppear(animated)
+//
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Design
         setUpDesign()
         
         networkManager.delegate = self
+        
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.requestLocation()
+        }
+        
     }
     
     // Button Actions
+    
+    // Peforming segue
     @IBAction func searchAction(_ sender: UIButton) {
     }
     
     @IBAction func locationAction(_ sender: UIButton) {
+        
+        
+        if CLLocationManager.locationServicesEnabled() {
+            self.locationManager.requestLocation()
+        }
+        
+        
     }
     
     // Unwind Segue from AddView
@@ -48,28 +75,54 @@ class MainView: UIViewController {
         
         let addVC = segue.source as! AddView
         
-        
         // Если название города состоит из 2 и более слов, то мы соединяем их.
         let cityName = addVC.cityName
         let cityInfo = cityName.split(separator: " ").joined(separator: "%20")
         
         
         // Получаем данные для определенного города
-        let userInitiatedQueue = DispatchQueue.global(qos: .userInitiated)
-        userInitiatedQueue.async {
+        userInitiatedQueue.sync {
             
             // Получаем данные о погоде в выбранном городе
-            self.networkManager.fetchCurrentWeather(for: cityInfo)
+            self.networkManager.fetchCurrentWeather(forRequestType: .cityName(city: cityInfo))
         }
     }
 }
 
+
+// MARK: - NetworkManagerDelegate
+
 extension MainView: NetworkManagerDelegate {
     
     func updatingInterface(_: NetworkManager, with currentWeather: CurrentWeather) {
-        
-        DispatchQueue.main.sync {
-            self.locationLabel.text = currentWeather.cityName
+        updateIntefaceWith(weather: currentWeather)
+    }
+    
+    func updateIntefaceWith(weather: CurrentWeather) {
+        DispatchQueue.main.async {
+            self.locationLabel.text = weather.cityName
+            self.temp.text = weather.temperatureString
+            self.feelsLikeTemp.text = "Feels like \(weather.feelsLikeTempString) °C"
+            self.weatherImage.image = UIImage(systemName: weather.weatherIconString)
         }
+    }
+}
+
+
+// MARK: - CoreLocationDelegate
+
+extension MainView: CLLocationManagerDelegate {
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = locations.last else { return }
+        let latitude = location.coordinate.latitude
+        let longitude = location.coordinate.longitude
+        
+        
+        networkManager.fetchCurrentWeather(forRequestType: .coordinates(latitude: latitude, longitude: longitude))
+    }
+    
+    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
+        print(error.localizedDescription)
+        self.createAlert(with: "Whoops...", message: "Turn on location on your device", style: .alert)
     }
 }
