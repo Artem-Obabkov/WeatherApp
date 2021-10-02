@@ -22,7 +22,7 @@ class MainView: UIViewController {
     @IBOutlet weak var locationButton: UIButton!
     
     // Managers
-    let networkManager = NetworkManager()
+    let networkWeatherManager = NetworkWeatherManager()
     lazy var locationManager: CLLocationManager =  {
         let  lm = CLLocationManager()
         lm.delegate = self
@@ -34,20 +34,17 @@ class MainView: UIViewController {
     // Queues
     let userInitiatedQueue = DispatchQueue.global(qos: .userInteractive)
     
-//    override func viewWillAppear(_ animated: Bool) {
-//        super.viewWillAppear(animated)
-//
-//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpDesign()
         
-        networkManager.delegate = self
+        networkWeatherManager.delegate = self
         
-        
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.requestLocation()
+        DispatchQueue.main.async {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.requestLocation()
+            }
         }
         
     }
@@ -60,12 +57,11 @@ class MainView: UIViewController {
     
     @IBAction func locationAction(_ sender: UIButton) {
         
-        
-        if CLLocationManager.locationServicesEnabled() {
-            self.locationManager.requestLocation()
+        userInitiatedQueue.sync {
+            if CLLocationManager.locationServicesEnabled() {
+                self.locationManager.requestLocation()
+            }
         }
-        
-        
     }
     
     // Unwind Segue from AddView
@@ -84,7 +80,8 @@ class MainView: UIViewController {
         userInitiatedQueue.sync {
             
             // Получаем данные о погоде в выбранном городе
-            self.networkManager.fetchCurrentWeather(forRequestType: .cityName(city: cityInfo))
+            self.networkWeatherManager.fetchWeather(forRequestType: .cityNameCurrentWeather(city: cityInfo))
+            self.networkWeatherManager.fetchWeather(forRequestType: .cityNameForecastWeather(city: cityInfo))
         }
     }
 }
@@ -92,9 +89,9 @@ class MainView: UIViewController {
 
 // MARK: - NetworkManagerDelegate
 
-extension MainView: NetworkManagerDelegate {
+extension MainView: NetworkWeatherManagerDelegate {
     
-    func updatingInterface(_: NetworkManager, with currentWeather: CurrentWeather) {
+    func updatingInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
         updateIntefaceWith(weather: currentWeather)
     }
     
@@ -118,7 +115,8 @@ extension MainView: CLLocationManagerDelegate {
         let longitude = location.coordinate.longitude
         
         
-        networkManager.fetchCurrentWeather(forRequestType: .coordinates(latitude: latitude, longitude: longitude))
+        networkWeatherManager.fetchWeather(forRequestType: .coordinatesCurrentWeather(latitude: latitude, longitude: longitude))
+        networkWeatherManager.fetchWeather(forRequestType: .coordinatesForecastWeather(latitude: latitude, longitude: longitude))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

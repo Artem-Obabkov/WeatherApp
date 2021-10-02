@@ -7,4 +7,9 @@
 
 import Foundation
 
-let apiKey = "a19646f26f0a3bf9c3688d6405fc343e"
+let apiKeyOpenWeatherMap = "a19646f26f0a3bf9c3688d6405fc343e"
+let apiKeyWeatherApi = "98fb95ea288a48ea94390211210110"
+
+
+
+
