@@ -9,7 +9,8 @@ import Foundation
 import CoreLocation
 
 protocol NetworkWeatherManagerDelegate: class {
-    func updatingInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather)
+    func updatingInterfaceWithCurrentWeather(_: NetworkWeatherManager, with currentWeather: CurrentWeather)
+    func updatingInterfaceWithForecastWeather(_: NetworkWeatherManager, with forecastWeather: ForecastWeather)
 }
 
 
@@ -69,11 +70,14 @@ class NetworkWeatherManager {
                     if let currentWeather = self.parseJSON(withData: data) {
                         
                         // Передаем делегате currentWeather что бы потом NetworkManager смог обновить интерфейс
-                        self.delegate?.updatingInterface(self, with: currentWeather)
+                        self.delegate?.updatingInterfaceWithCurrentWeather(self, with: currentWeather)
                     }
                 } else {
-                    self.parseForecastJSON(with: data)
+                    
+                    if let forecastWeather = self.parseForecastJSON(with: data) {
+                        self.delegate?.updatingInterfaceWithForecastWeather(self, with: forecastWeather)
                         
+                    }
                 }
             }
         }
@@ -105,16 +109,20 @@ class NetworkWeatherManager {
     
     // MARK: - WeatherApi - Forecast
     
-    func parseForecastJSON(with data: Data) {
+    func parseForecastJSON(with data: Data) -> ForecastWeather? {
         let decoder = JSONDecoder()
         
         do {
             let forecastWeatherData = try decoder.decode(ForecastWeatherData.self, from: data)
             
-            // TODO: - передать в структуру forecastWeather данные.
+            guard let forecastWeather = ForecastWeather(forecastWeatherData: forecastWeatherData) else { return nil}
+            
+            return forecastWeather
             
         } catch let error as NSError {
             print(error.localizedDescription)
+            return nil
         }
+        return nil
     }
 }

@@ -16,6 +16,7 @@ class MainView: UIViewController {
     @IBOutlet weak var weatherImage: UIImageView!
     @IBOutlet weak var temp: UILabel!
     @IBOutlet weak var feelsLikeTemp: UILabel!
+    @IBOutlet weak var tableView: UITableView!
     
     // Buttons Outlets
     @IBOutlet weak var searchButton: UIButton!
@@ -34,6 +35,9 @@ class MainView: UIViewController {
     // Queues
     let userInitiatedQueue = DispatchQueue.global(qos: .userInteractive)
     
+    // Weather array
+    
+    var forecastArray = [ForecastCellModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,6 +51,8 @@ class MainView: UIViewController {
             }
         }
         
+        // Register NIB
+        self.tableView.register(ForecastWeatherCell.nib(), forCellReuseIdentifier: ForecastWeatherCell.identifier)
     }
     
     // Button Actions
@@ -83,15 +89,58 @@ class MainView: UIViewController {
             self.networkWeatherManager.fetchWeather(forRequestType: .cityNameCurrentWeather(city: cityInfo))
             self.networkWeatherManager.fetchWeather(forRequestType: .cityNameForecastWeather(city: cityInfo))
         }
+
     }
 }
 
+// MARK: - Table View
+
+extension MainView: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return forecastArray.isEmpty ? 0 : forecastArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: ForecastWeatherCell.identifier) as! ForecastWeatherCell
+        
+        let dayInfo = forecastArray[indexPath.row]
+        
+        // Присваиваем cell данные полученные из модели ForecastWeather
+        cell.weatherImage.image = UIImage(systemName: dayInfo.weatherImage)
+        cell.dateLabel.text = dayInfo.date
+        cell.dayLabel.text = dayInfo.day
+        cell.maxTempLabel.text = dayInfo.maxTemp
+        cell.minTempLabel.text = dayInfo.minTemp
+        cell.avrTempLabel.text = dayInfo.avrTemp
+        
+        return cell
+    }
+    
+}
 
 // MARK: - NetworkManagerDelegate
 
 extension MainView: NetworkWeatherManagerDelegate {
     
-    func updatingInterface(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
+    func updatingInterfaceWithForecastWeather(_: NetworkWeatherManager, with forecastWeather: ForecastWeather) {
+        
+        forecastArray = forecastWeather.getForecastArray()
+        
+        // Переходим на основную очередб для обноаления интерфейса
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve) {
+                self.tableView.reloadData()
+            }
+                              
+            //self.tableView.reloadData()
+        }
+    }
+    
+    
+    func updatingInterfaceWithCurrentWeather(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
         updateIntefaceWith(weather: currentWeather)
     }
     
