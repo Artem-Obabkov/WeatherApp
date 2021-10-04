@@ -37,7 +37,7 @@ class MainView: UIViewController {
     
     // Weather array
     
-    var forecastArray = [ForecastCellModel]()
+    var forecastArray = [ForecastCell]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -86,9 +86,10 @@ class MainView: UIViewController {
         userInitiatedQueue.sync {
             
             // Получаем данные о погоде в выбранном городе
-            self.networkWeatherManager.fetchWeather(forRequestType: .cityNameCurrentWeather(city: cityInfo))
-            self.networkWeatherManager.fetchWeather(forRequestType: .cityNameForecastWeather(city: cityInfo))
+            self.networkWeatherManager.fetchWeather(forRequestType: .cityName(city: cityInfo))
         }
+        
+        
 
     }
 }
@@ -130,27 +131,42 @@ extension MainView: NetworkWeatherManagerDelegate {
         
         // Переходим на основную очередб для обноаления интерфейса
         DispatchQueue.main.async { [weak self] in
+            
             guard let self = self else { return }
             UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve) {
+                
                 self.tableView.reloadData()
             }
-                              
-            //self.tableView.reloadData()
+            
+            self.updateIntefaceWith(weather: forecastWeather)
         }
+        
     }
     
-    
-    func updatingInterfaceWithCurrentWeather(_: NetworkWeatherManager, with currentWeather: CurrentWeather) {
-        updateIntefaceWith(weather: currentWeather)
+    func updateIntefaceWith(weather: ForecastWeather) {
+        
+        self.locationLabel.text = weather.cityName
+        self.temp.text = weather.tempString
+        self.feelsLikeTemp.text = "Feels like \(weather.feelslikeString) °C"
+        self.weatherImage.image = UIImage(systemName: weather.getCurrentImageString)
+        
+        animateIntarface()
     }
     
-    func updateIntefaceWith(weather: CurrentWeather) {
-        DispatchQueue.main.async {
-            self.locationLabel.text = weather.cityName
-            self.temp.text = weather.temperatureString
-            self.feelsLikeTemp.text = "Feels like \(weather.feelsLikeTempString) °C"
-            self.weatherImage.image = UIImage(systemName: weather.weatherIconString)
+    func animateIntarface() {
+        
+        self.locationLabel.layer.opacity = 0.4
+        self.temp.layer.opacity = 0.4
+        self.feelsLikeTemp.layer.opacity = 0.4
+        self.weatherImage.layer.opacity = 0.4
+        
+        UIView.animate(withDuration: 0.3, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.3, options: .curveEaseInOut) {
+            self.locationLabel.layer.opacity = 1
+            self.temp.layer.opacity = 1
+            self.feelsLikeTemp.layer.opacity = 1
+            self.weatherImage.layer.opacity = 1
         }
+
     }
 }
 
@@ -163,9 +179,7 @@ extension MainView: CLLocationManagerDelegate {
         let latitude = location.coordinate.latitude
         let longitude = location.coordinate.longitude
         
-        
-        networkWeatherManager.fetchWeather(forRequestType: .coordinatesCurrentWeather(latitude: latitude, longitude: longitude))
-        networkWeatherManager.fetchWeather(forRequestType: .coordinatesForecastWeather(latitude: latitude, longitude: longitude))
+        networkWeatherManager.fetchWeather(forRequestType: .coordinates(latitude: latitude, longitude: longitude))
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

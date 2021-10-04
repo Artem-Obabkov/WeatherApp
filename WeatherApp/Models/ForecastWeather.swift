@@ -7,12 +7,30 @@
 
 import Foundation
 
+// Мы получили JSON и разложили его по полочкам с помощью сайта QuickType.io Используем только те свойства, которые нам нужны в проекте.
 struct ForecastWeather {
+    
+    let cityName: String
+    
+    let temp: Int
+    var tempString: String {
+        return String(temp)
+    }
+    
+    let feelslike: Double
+    var feelslikeString: String {
+        return String(format: "%.1f", feelslike)
+    }
+    
+    let currentCondition: String
+    var getCurrentImageString: String {
+        return getImageString(imageLink: currentCondition)
+    }
     
     let forecastDayArray: [Forecastday]
     
-    func getForecastArray() -> [ForecastCellModel] {
-        var forecastWeather = [ForecastCellModel]()
+    func getForecastArray() -> [ForecastCell] {
+        var forecastWeather = [ForecastCell]()
         
         for day in forecastDayArray {
             let imageString = getImageString(imageLink: day.day.condition.icon)
@@ -22,7 +40,7 @@ struct ForecastWeather {
             let avrTempString = "\(getAverageTemp(minTemp: day.day.mintempC, maxTemp: day.day.maxtempC))°C"
             let dayOfWeek = getDayOfTheWeek(fromDate: day.date)
             
-            let forecastWeatherItem = ForecastCellModel(weatherImage: imageString, date: dateString, day: dayOfWeek, maxTemp: maxTempString, minTemp: minTempString, avrTemp: avrTempString)
+            let forecastWeatherItem = ForecastCell(weatherImage: imageString, date: dateString, day: dayOfWeek, maxTemp: maxTempString, minTemp: minTempString, avrTemp: avrTempString)
             
             forecastWeather.append(forecastWeatherItem)
         }
@@ -106,5 +124,9 @@ struct ForecastWeather {
 
     init?(forecastWeatherData: ForecastWeatherData) {
         forecastDayArray = forecastWeatherData.forecast.forecastday
+        cityName = forecastWeatherData.location.name
+        temp = forecastWeatherData.current.tempC
+        feelslike = forecastWeatherData.current.feelslikeC
+        currentCondition = forecastWeatherData.current.condition.icon
     }
 }
