@@ -15,16 +15,7 @@ extension MainView {
         self.locationButton.layer.cornerRadius = 25
         
         self.tableView.backgroundColor = UIColor.clear
-        
-        // Additional separator at the top of UITableView
-        let topLine = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 1 / UIScreen.main.scale))
-        topLine.backgroundColor = self.tableView.separatorColor
-        self.tableView.tableHeaderView = topLine
-        
-        // Remove footer separator in table view
-        let bottomLine = UIView(frame: CGRect(x: 0, y: 0, width: self.tableView.frame.width, height: 1 / UIScreen.main.scale))
-        bottomLine.backgroundColor = UIColor.clear
-        self.tableView.tableFooterView = bottomLine
+        self.tableView.separatorColor = UIColor.clear
     }
     
     func createAlert(with title: String, message: String?, style: UIAlertController.Style) {

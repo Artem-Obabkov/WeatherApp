@@ -108,8 +108,11 @@ extension MainView: UITableViewDelegate, UITableViewDataSource {
         
         let dayInfo = forecastArray[indexPath.row]
         
+        // Создаем image и устанавливаем contentMode
+        let image = UIImage(systemName: dayInfo.weatherImage)
+        
         // Присваиваем cell данные полученные из модели ForecastWeather
-        cell.weatherImage.image = UIImage(systemName: dayInfo.weatherImage)
+        cell.weatherImage.image = image
         cell.dateLabel.text = dayInfo.date
         cell.dayLabel.text = dayInfo.day
         cell.maxTempLabel.text = dayInfo.maxTemp
@@ -134,6 +137,7 @@ extension MainView: NetworkWeatherManagerDelegate {
             
             guard let self = self else { return }
             UIView.transition(with: self.tableView, duration: 0.25, options: .transitionCrossDissolve) {
+                
                 
                 self.tableView.reloadData()
             }

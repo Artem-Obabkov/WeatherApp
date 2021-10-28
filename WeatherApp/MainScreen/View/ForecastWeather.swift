@@ -60,7 +60,7 @@ struct ForecastWeather {
         case 116, 323, 329, 335, 368...377: result = "cloud.sun"
         case 119...122: result = "cloud"
         case 143, 248, 260: result = "cloud.fog"
-        case 176, 179, 182, 293, 299, 305, 353...365: result = "cloud.sun.rain"
+        case 176, 179, 182, 293, 299, 305, 353...365: result = "cloud.sun"
         case 185, 281, 284, 311, 314: result = "cloud.drizzle"
         case 200, 386, 392: result = "cloud.sun.bolt"
         case 227, 230, 326, 332, 338, 350: result = "cloud.snow"

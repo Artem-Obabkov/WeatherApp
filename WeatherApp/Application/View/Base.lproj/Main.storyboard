@@ -35,22 +35,22 @@
                                 <rect key="frame" x="105" y="115.5" width="204" height="250"/>
                                 <subviews>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="249" translatesAutoresizingMaskIntoConstraints="NO" id="JzN-Gk-F8A">
-                                        <rect key="frame" x="0.0" y="0.0" width="204" height="152.5"/>
+                                        <rect key="frame" x="0.0" y="-1.5" width="204" height="155.5"/>
                                         <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <imageReference key="image" image="smoke" catalog="system" symbolScale="large" renderingMode="template"/>
-                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="large" weight="light"/>
+                                        <imageReference key="image" image="nosign" catalog="system" symbolScale="large" renderingMode="template"/>
+                                        <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="17" scale="large" weight="thin"/>
                                     </imageView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9L-Zy-465">
-                                        <rect key="frame" x="15" y="152.5" width="174" height="78"/>
+                                        <rect key="frame" x="14" y="152.5" width="176.5" height="78"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="9.6" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="54F-K0-A8l">
-                                                <rect key="frame" x="0.0" y="0.0" width="103.5" height="78"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="751" text="0.0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="54F-K0-A8l">
+                                                <rect key="frame" x="0.0" y="0.0" width="106" height="78"/>
                                                 <fontDescription key="fontDescription" type="system" weight="black" pointSize="65"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="°C" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="35" preferredMaxLayoutWidth="74.299999999999997" translatesAutoresizingMaskIntoConstraints="NO" id="pWF-AF-bsF">
-                                                <rect key="frame" x="103.5" y="0.0" width="70.5" height="78"/>
+                                                <rect key="frame" x="106" y="0.0" width="70.5" height="78"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="51" id="laZ-lk-53V"/>
                                                 </constraints>
@@ -60,7 +60,7 @@
                                             </label>
                                         </subviews>
                                     </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feels like 10.2 °C " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-Vd-2d2">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feels like 0.0 °C " textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yAB-Vd-2d2">
                                         <rect key="frame" x="0.0" y="230.5" width="204" height="19.5"/>
                                         <constraints>
                                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="20" id="nd3-jx-SLz"/>
@@ -279,7 +279,7 @@
         <image name="background" width="375" height="667"/>
         <image name="location.circle" catalog="system" width="128" height="121"/>
         <image name="magnifyingglass.circle" catalog="system" width="128" height="121"/>
-        <image name="smoke" catalog="system" width="128" height="93"/>
+        <image name="nosign" catalog="system" width="128" height="121"/>
         <namedColor name="AddScreenBG">
             <color red="0.29399999976158142" green="0.25499999523162842" blue="0.54500001668930054" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
